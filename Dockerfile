@@ -50,8 +50,11 @@ RUN cd $OMNETPP_ROOT && \
     mkdir /usr/share/desktop-directories/ && \
     bash -c ". setenv && ./configure && make -j6"
 
+# Create and set the working directory
+RUN mkdir -p $OMNETPP_ROOT/OmnetppProjects
+
 # Set the working directory
 WORKDIR $OMNETPP_ROOT
 
 # Default command to run when the container starts
-CMD ["bash"]
+CMD ["bash", "-c", ". $OMNETPP_ROOT/setenv && omnetpp && bash"]
