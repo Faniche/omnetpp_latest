@@ -35,14 +35,12 @@ Run the following commands to set up and start the container:
 ```bash
 export DISPLAY=:0
 xhost +
-docker run -it -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix --device /dev/dri/ omnetpp
+docker run -it -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix --mount type=bind,source="$(pwd)",target=/opt/omnetpp/OmnetppProjects --device /dev/dri/ omnetpp:6.0.3
 ```
-When entering container, run the following commands:
+When entering container, omnetpp will automatically start, just waitting. When you want to stop, close the ide window and execute `exit` in container.
 
-```bash
-. setenv
-omnetpp
-```
+Next time just running `docker start -i CONTAINER_NAME`.
+
 ### MacOS and Windows
 
 Running GUI applications inside Docker containers on MacOS and Windows requires additional setup. You can use XQuartz on MacOS or an X server like VcXsrv on Windows. Refer to relevant guides to set up X11 forwarding for Docker on your platform.
