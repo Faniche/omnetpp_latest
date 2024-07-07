@@ -7,6 +7,9 @@ ENV TZ=Asia/Tokyo
 ENV OMNETPP_VERSION=6.0.3
 ENV OMNETPP_ROOT=/opt/omnetpp
 ENV PATH=$OMNETPP_ROOT/bin:$PATH
+ENV XDG_RUNTIME_DIR=/tmp/runtime-root
+ENV LIBGL_ALWAYS_SOFTWARE=1
+ENV MESA_LOADER_DRIVER_OVERRIDE=llvmpipe
 
 # Install dependencies
 RUN apt-get update && apt-get install -y \
@@ -32,6 +35,9 @@ RUN apt-get update && apt-get install -y \
     xdg-utils \
     openscenegraph-plugin-osgearth \
     libosgearth-dev \
+    mesa-utils \
+    libgl1-mesa-dri \
+    libgl1-mesa-glx \
     wget && \
     apt-get clean
 
